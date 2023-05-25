@@ -2,6 +2,7 @@
   "name": "client",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://subdominio.elcampitorefugio.org",
   "dependencies": {
     "@auth0/auth0-react": "^1.12.0",
     "@cloudinary/react": "^1.5.0",
