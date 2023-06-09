@@ -37,19 +37,23 @@ Además encontramos los folders:
 En `api` crear un archivo llamado: `.env` que tenga las `variables de entorno`:
 
 ```env
-USER = elcampito 
-PASS = ZoSzoSTtKgz8vhdb
+USER_DB = elcampito 
+PASS_DB = ZoSzoSTtKgz8vhdb
 NAME_DB = dbapi
-PORT = 3001
-FRONT = 3000
-SECRET = pepillo
+ 
+BACK = 3001
+PORT = http://localhost:3001
+FRONT = http://localhost:3000
+
 TOKEN_SECRET=123
-GMAIL_PASSWORD=gfbjvbpweuafacmp
-GMAIL_USER=elcampitorefugiodev@gmail.com
-ACCESS_TOKEN =  APP_USR-5942738066993730-010207-4b1a981dd2a465926e617e0a7b156c78-1277420535
-PAYPAL_API_CLIENT=ATxN-COATDrhTAh2FTj46MY9VUMs3L02fcECHcXoCghkp8R_k3bmCngi2X-7SYDfu10JUItC6YxuWIck
-PAYPAL_API_SECRET=EIjHmxUb-KpivT9E2QY53MfQbZTkstZzmjXvx4GCaEzIvnBEGd7D6p55qGezE56BxSmaUzkXMaHWBQQH
-PAYPAL_API=https://api-m.sandbox.paypal.com
+GMAIL_PASSWORD = gfbjvbpweuafacmp
+GMAIL_USER = elcampitorefugiodev@gmail.com
+ACCESS_TOKEN = APP_USR-5942738066993730-010207-4b1a981dd2a465926e617e0a7b156c78-1277420535
+
+PAYPAL_API_CLIENT = ATxN-COATDrhTAh2FTj46MY9VUMs3L02fcECHcXoCghkp8R_k3bmCngi2X-7SYDfu10JUItC6YxuWIck
+PAYPAL_API_SECRET = EIjHmxUb-KpivT9E2QY53MfQbZTkstZzmjXvx4GCaEzIvnBEGd7D6p55qGezE56BxSmaUzkXMaHWBQQH
+PAYPAL_API = https://api-m.sandbox.paypal.com
+PAYPAL_BRAND = El campito Refugio
 ```
 
 **client**
@@ -123,7 +127,7 @@ El administrador podrá, a través de un panel de administración, incorporar di
 - [ ] GitHub ---> alojamos el repositorio de trabajo compartido.
       https://github.com/rodrigoebravo/el-campito-refugio-henry/tree/developer
 - [ ] Trello ---> Configuramos las `U.S.` y creamos las tareas para ser tomadas por los miembros del equipo. Establecemos un procesos de avance en columnas.
-      https://trello.com/b/Vj8ybG92/kanban-template
+      https://trello.com/b/oyTwxTL6/p%C3%A1g-web-el-campito
 - [ ] Figma ---> Tenemos el maquetado de la app y su perfil estético.
       https://www.figma.com/file/1J1oyIBmnfcyyrSXy0qGw3/El-Campito-Refugio-Web?node-id=0%3A1git
 - [ ] Postman ---> Montamos las rutas del `back` para prueba y visualización.
