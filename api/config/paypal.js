@@ -1,5 +1,5 @@
-// const dotenv = require("dotenv");
-// dotenv.config();
+const dotenv = require("dotenv");
+dotenv.config();
 
 // Paypal
 const PAYPAL_API_CLIENT = process.env.PAYPAL_API_CLIENT;

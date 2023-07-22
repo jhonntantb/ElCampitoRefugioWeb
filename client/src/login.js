@@ -85,8 +85,8 @@ export function registerUserGoogle(dataUser) {
         dataUser
       );
       registerData();
-      console.log(registerData, "soy dATA ENVIDA");
-      console.log(dataUser, "dATA ENVIDA");
+      console.log(registerData, "soy DATA ENVIADA");
+      console.log(dataUser, "DATA ENVIDA");
       // localStorage.setItem("user", JSON.stringify(registerData));
       // window.location.reload();
       // console.log(registerData, "Soy data de fun register de login");

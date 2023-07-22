@@ -11,16 +11,12 @@ const ImagenUpload = () => {
     
     const cloudImages = useSelector(state => state.responseCloudinary);
 
-   
-
-
     const uploadImage = async (e) => {
         console.log(e.target.files);
         const files = e.target.files;
         const data = new FormData();
         data.append('file', files[0]);
-        data.append('upload_preset', 'el_campito_ONG'); //CAMBIAR POR VARIABLE DE ENTORNO
-        
+        data.append('upload_preset', process.env.PRESET_CLOUDINARY);         
         dispatch(postCloudinaryPhoto(data))
     };
 
