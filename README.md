@@ -82,6 +82,22 @@ En `client` podrá encontrar, dentro de `src`, además del archivo `index.js` (c
 - [ UserInterface ] ---> componentes de la interfaz de usuario.
 - y otros...
 
+
+```env
+REACT_APP_API = http://localhost:3001
+REACT_APP_FRONT= http://localhost:3000
+REACT_APP_PORT= 3000
+
+REACT_APP_AUTH_DOMAIN = dev-qqz8ma6iobhnkp1y.us.auth0.com
+REACT_APP_AUTH_CLIENT = 90G60Ze1V6KL8gRdblkVxAuufEM11qr4
+
+GMAIL_USER = elcampitorefugiodev@gmail.com
+
+NAME_CLOUDINARY = dman2cjk5
+PRESET_CLOUDINARY = el_campito_ONG
+
+```
+
 ## **Branches**
 
 Para un manejo ordenado se recomienda crear una rama nueva por cada función o componente a trabajar...y una vez aprobado y mergeado pasar a eliminar la rama, para evitar una lista indefinida de ramas. De esa forma solo quedarnos con las ramas activas.
