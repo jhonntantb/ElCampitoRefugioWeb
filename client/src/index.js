@@ -15,8 +15,8 @@ dotenv.config();
 
 axios.defaults.baseURL = process.env.REACT_APP_API || "http://localhost:3001";
 
-const domainAuth = process.env.REACT_APP_AUTH_DOMAIN || "dev-i2ktot5tu17k7x45.us.auth0.com";
-const clientAuth = process.env.REACT_APP_AUTH_CLIENT || "a5EV2B0kWxPioUIHkQUJIkc9yTnZPnuX";
+const domainAuth = process.env.REACT_APP_AUTH_DOMAIN;
+const clientAuth = process.env.REACT_APP_AUTH_CLIENT;
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

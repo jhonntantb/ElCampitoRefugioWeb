@@ -19,9 +19,9 @@ import {
 } from './types';
 import axios from 'axios';
 
-import dotenv from "dotenv";
-dotenv.config();
-// const {NAME_CLOUDINARY} = process.env;
+// import dotenv from "dotenv";
+// dotenv.config();
+const name = process.env.REACT_APP_NAME_CLOUDINARY;
 
 
 
@@ -43,9 +43,9 @@ export default function postMeli(title, unit_price) {
 
 export const postCloudinaryPhoto = (postData) => {
   return async (dispatch) => {
-    console.log(postData); // dman2cjk5
+    console.log(postData); 
     const json = await axios.post(
-      `https://api.cloudinary.com/v1_1/dman2cjk5/image/upload`,
+      `https://api.cloudinary.com/v1_1/${name}/image/upload`,
       postData
     );
     console.log(json.data.secure_url);
@@ -257,7 +257,7 @@ export const postContacto = (data) => {
   };
 };
 
-export function getSlider() {
+export const getSlider = () => {
   return async function (dispatch) {
     const responce = await axios("/api/interfaces");
     const arrayImg = responce.data[0].slider;

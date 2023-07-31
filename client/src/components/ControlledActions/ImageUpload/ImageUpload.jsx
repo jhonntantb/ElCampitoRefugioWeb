@@ -16,7 +16,7 @@ const ImagenUpload = () => {
         const files = e.target.files;
         const data = new FormData();
         data.append('file', files[0]);
-        data.append('upload_preset', process.env.PRESET_CLOUDINARY);         
+        data.append('upload_preset', 'Users_ONG');         
         dispatch(postCloudinaryPhoto(data))
     };
 
