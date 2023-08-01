@@ -5,7 +5,7 @@ import styles from "./Pay.module.css";
 
 const Pay = () => {
   function goHome() {
-    window.location = process.env.FRONT || "http://localhost:3000/";
+    window.location = process.env.REACT_APP_FRONT || "http://localhost:3000/";
   }
   setTimeout(goHome, 2000);
 

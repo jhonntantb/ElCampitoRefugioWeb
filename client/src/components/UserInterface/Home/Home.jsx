@@ -3,13 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 
-import homeimg from "../../../assets/img/homeimg.jpg";
+// import homeimg from "../../../assets/img/homeimg.jpg";
 
 import { getUsersEmail } from "../../../redux/actions/action";
 
 import BarraDeNavegacion from "../BarraDeNavegacion/BarraDeNavegacion";
-// import { Slide,Slideshow } from "../Slider/Slider";
-// import {getSlider} from "../../redux/actions/actions"
+import { Slide,Slideshow } from "../Slider/Slider";
+import { getSlider } from "../../../redux/actions/action";
 import Footer from "../Footer/Footer";
 import ModalLogin from "../../Modals/ModalLogin/ModalLogin";
 import ModalRegister from "../../Modals/ModalRegister/ModalRegister";
@@ -19,7 +19,7 @@ import styles from "./Home.module.css";
 
 const Home = () => {
   const { user } = useAuth0();
-  // const imagenes = useSelector((state) => state.slider);
+  const imagenes = useSelector((state) => state.slider);
   const dispatch = useDispatch();
   const [userGoogle, setUserGoogle] = useState();
   const usersEmail = useSelector((state) => state.userEmail);
@@ -41,7 +41,7 @@ const Home = () => {
     // return () => {
     setUserGoogle(userIn);
     dataSet(userGoogle);
-    // dispatch(getSlider());
+    dispatch(getSlider());
     
   }, [dispatch]); // , userGoogle, usersEmail, user
 
@@ -99,13 +99,15 @@ const Home = () => {
               </p>
               <h2 className={styles.h2Home}>VALE LA PENA INVOLUCRARSE</h2>
             </div>
+            
+            {/* 
             <img
               src={homeimg}
               className={styles.imgHome}
               alt="Perro con humano"
-            />
-            {/* aca va el slider */}
-            {/* <main>
+            /> 
+            */}
+            <main>
               <Slideshow
                 controles={true}
                 autoplay={true}
@@ -181,7 +183,7 @@ const Home = () => {
                   <></>
                 )}
               </Slideshow>
-            </main> */}
+            </main> 
             {/* aca termino el slider */}
           </article>
         </section>

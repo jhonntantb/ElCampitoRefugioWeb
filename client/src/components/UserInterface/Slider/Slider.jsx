@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useCallback } from "react";
-import { ReactComponent as FlechaIzquierda } from "../../assets/img/icons/iconmonstr-angel-left-thin.svg";
-import { ReactComponent as FlechaDerecha } from "../../assets/img/icons/iconmonstr-angel-right-thin.svg";
+import { ReactComponent as FlechaIzquierda } from "../../../assets/img/icons/iconmonstr-angel-left-thin.svg";
+import { ReactComponent as FlechaDerecha } from "../../../assets/img/icons/iconmonstr-angel-right-thin.svg";
 import styled from "styled-components";
 
 export const Slideshow = ({
@@ -65,7 +65,7 @@ export const Slideshow = ({
         slideshow.current.style.transform = `translateX(0)`;
       }, 30);
     }
-  };
+  }; 
 
   useEffect(() => {
     if (autoplay) {
@@ -112,8 +112,8 @@ const ContenedorSlideshow = styled.div`
   display: flex;
   flex-wrap: nowrap;
   width: 100%;
-  height: 300px;
-`;
+  height: 400px;
+  `;
 
 export const Slide = styled.div`
   min-width: 50%;
@@ -122,6 +122,7 @@ export const Slide = styled.div`
   z-index: 10;
   max-height: 500px;
   position: relative;
+  margin: 10px;
 
   img {
     width: 100%;
@@ -184,4 +185,4 @@ const Boton = styled.button`
   ${(props) => (props.derecho ? "right: 0" : "left: 0")}
 `;
 
-//export default  { Slideshow, Slide, TextoSlide };
+export default  { Slideshow, Slide, TextoSlide };

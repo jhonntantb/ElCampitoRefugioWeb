@@ -3,9 +3,9 @@ import styles from "./NoAccess.module.css";
 
 const NoAccess = () => {
   function goHome() {
-    window.location = process.env.FRONT || "http://localhost:3000/";
+    window.location = process.env.REACT_APP_FRONT || "http://localhost:3000/";
   }
-  setTimeout(goHome, 3000);
+  setTimeout(goHome, process.env.REACT_APP_PORT || 3000);
 
   return (
     <div className={styles.div}>
