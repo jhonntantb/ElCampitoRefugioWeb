@@ -15,13 +15,16 @@ dotenv.config();
 
 axios.defaults.baseURL = process.env.REACT_APP_API || "http://localhost:3001";
 
+const domainAuth = process.env.REACT_APP_AUTH_DOMAIN;
+const clientAuth = process.env.REACT_APP_AUTH_CLIENT;
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Provider store={store}>
     <React.StrictMode>
-    <Auth0Provider
-        domain="dev-i2ktot5tu17k7x45.us.auth0.com"
-        clientId="a5EV2B0kWxPioUIHkQUJIkc9yTnZPnuX"
+      <Auth0Provider
+        domain={domainAuth}
+        clientId={clientAuth}
         redirectUri={window.location.origin}
       >
         <App />

@@ -37,6 +37,7 @@ Además encontramos los folders:
 En `api` crear un archivo llamado: `.env` que tenga las `variables de entorno`:
 
 ```env
+
 USER_DB = elcampito 
 PASS_DB = ZoSzoSTtKgz8vhdb
 NAME_DB = dbapi
@@ -48,12 +49,14 @@ FRONT = http://localhost:3000
 TOKEN_SECRET=123
 GMAIL_PASSWORD = gfbjvbpweuafacmp
 GMAIL_USER = elcampitorefugiodev@gmail.com
-ACCESS_TOKEN = APP_USR-5942738066993730-010207-4b1a981dd2a465926e617e0a7b156c78-1277420535
+ACCESS_TOKEN_TEST = APP_USR-5942738066993730-010207-4b1a981dd2a465926e617e0a7b156c78-1277420535
+ACCESS_TOKEN = APP_USR-6738449231974034-061316-0fcdb99c3b9afd14cb734986ee14687d-430193843
 
 PAYPAL_API_CLIENT = ATxN-COATDrhTAh2FTj46MY9VUMs3L02fcECHcXoCghkp8R_k3bmCngi2X-7SYDfu10JUItC6YxuWIck
 PAYPAL_API_SECRET = EIjHmxUb-KpivT9E2QY53MfQbZTkstZzmjXvx4GCaEzIvnBEGd7D6p55qGezE56BxSmaUzkXMaHWBQQH
 PAYPAL_API = https://api-m.sandbox.paypal.com
 PAYPAL_BRAND = El campito Refugio
+
 ```
 
 **client**
@@ -81,6 +84,19 @@ En `client` podrá encontrar, dentro de `src`, además del archivo `index.js` (c
 - [ ReactAdmin ] ---> componentes que conforman el Panel de Administrador.
 - [ UserInterface ] ---> componentes de la interfaz de usuario.
 - y otros...
+
+
+```env
+REACT_APP_API = http://localhost:3001
+REACT_APP_FRONT= http://localhost:3000
+REACT_APP_PORT= 3000
+
+REACT_APP_AUTH_DOMAIN = dev-qqz8ma6iobhnkp1y.us.auth0.com
+REACT_APP_AUTH_CLIENT = 90G60Ze1V6KL8gRdblkVxAuufEM11qr4
+
+REACT_APP_NAME_CLOUDINARY = dakezkhho
+
+```
 
 ## **Branches**
 
