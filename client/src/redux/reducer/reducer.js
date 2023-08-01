@@ -17,8 +17,10 @@ import {
   POST_ADOPTION,
   POST_CONTACTO,
   POST_VOLUNTEER,
-  GET_PROYECTOS
-} from "../actions/types";
+  GET_PROYECTOS,
+  VERIFY_CAPTCHA,
+  DELETE_CAPTCHA_VALIDATE,
+} from '../actions/types';
 
 const initialState = {
   dogs: [],
@@ -27,11 +29,12 @@ const initialState = {
   allUsers: [],
   allDogs: [],
   press: [],
-  responseCloudinary: "",
+  responseCloudinary: '',
   userEmail: [],
   userProfile: [],
   slider: [],
-  proyectos:[]
+  proyectos: [],
+  validateRecaptcha: {},
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -86,17 +89,17 @@ export default function rootReducer(state = initialState, action) {
     case CLEAR_CLOUDINARY_RESPONSE:
       return {
         ...state,
-        responseCloudinary: "",
+        responseCloudinary: '',
       };
 
     case FILTER_DOGS_BY_GENDER:
       const filtredByGender = state.allDogs;
       const dogsFiltered =
-        action.payload === "All"
+        action.payload === 'All'
           ? filtredByGender
           : filtredByGender.filter((el) => el.gender === action.payload);
       if (dogsFiltered.length === 0) {
-        alert("No se encontraron perros con ese filtro");
+        alert('No se encontraron perros con ese filtro');
         return {
           ...state,
           dogs: filtredByGender,
@@ -111,11 +114,11 @@ export default function rootReducer(state = initialState, action) {
     case FILTER_DOGS_BY_AGE:
       const filtredByAge = state.allDogs;
       const dogsFilteredByAge =
-        action.payload === "All"
+        action.payload === 'All'
           ? filtredByAge
           : filtredByAge.filter((el) => el.age === action.payload);
       if (dogsFilteredByAge.length === 0) {
-        alert("No se encontraron perros con ese filtro");
+        alert('No se encontraron perros con ese filtro');
         return {
           ...state,
           dogs: filtredByAge,
@@ -129,11 +132,11 @@ export default function rootReducer(state = initialState, action) {
     case FILTER_DOGS_BY_SIZE:
       const filtredBySize = state.allDogs;
       const dogsFilteredBySize =
-        action.payload === "All"
+        action.payload === 'All'
           ? filtredBySize
           : filtredBySize.filter((el) => el.size === action.payload);
       if (dogsFilteredBySize.length === 0) {
-        alert("No se encontraron perros con ese filtro");
+        alert('No se encontraron perros con ese filtro');
         return {
           ...state,
           dogs: filtredBySize,
@@ -166,21 +169,32 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
       };
-    case "GET_USERS_PROFILE":
+    case 'GET_USERS_PROFILE':
       return {
         ...state,
         userProfile: action.payload,
       };
-    case "GET_SLIDER":
+    case 'GET_SLIDER':
       return {
         ...state,
         slider: action.payload,
       };
     case GET_PROYECTOS:
-        return {
-          ...state,
-          proyectos: action.payload,
-        };  
+      return {
+        ...state,
+        proyectos: action.payload,
+      };
+    case VERIFY_CAPTCHA:
+      console.log('llegamos al reducer captcha');
+      return {
+        ...state,
+        validateRecaptcha: action.payload,
+      };
+    case DELETE_CAPTCHA_VALIDATE:
+      return {
+        ...state,
+        validateRecaptcha: {},
+      };
     default:
       return {
         ...state,
