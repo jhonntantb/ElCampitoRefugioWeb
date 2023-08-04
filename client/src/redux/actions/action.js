@@ -15,7 +15,9 @@ import {
   GET_PRESS,
   GET_USERS_EMAIL,
   POST_CONTACTO,
-  GET_PROYECTOS
+  GET_PROYECTOS,
+  VERIFY_CAPTCHA,
+  DELETE_CAPTCHA_VALIDATE,
 } from './types';
 import axios from 'axios';
 
@@ -23,11 +25,9 @@ import axios from 'axios';
 // dotenv.config();
 const name = process.env.REACT_APP_NAME_CLOUDINARY;
 
-
-
 export function postDog(payload) {
   return async function () {
-    const post = await axios.post("/api/dogs", payload);
+    const post = await axios.post('/api/dogs', payload);
     return post;
   };
 }
@@ -35,7 +35,7 @@ export function postDog(payload) {
 export default function postMeli(title, unit_price) {
   return async function () {
     const post = await axios
-      .post("/mercadopago", title, unit_price)
+      .post('/mercadopago', title, unit_price)
       .then((res) => (window.location.href = res.data.init_point));
     return post;
   };
@@ -43,7 +43,7 @@ export default function postMeli(title, unit_price) {
 
 export const postCloudinaryPhoto = (postData) => {
   return async (dispatch) => {
-    console.log(postData); 
+    console.log(postData);
     const json = await axios.post(
       `https://api.cloudinary.com/v1_1/${name}/image/upload`,
       postData
@@ -67,13 +67,13 @@ export const clearCloudinaryResponse = () => {
 export const getUsers = () => {
   return async function (dispatch) {
     try {
-      let json = await axios("/api/users");
+      let json = await axios('/api/users');
       return dispatch({
         type: GET_USERS,
         payload: json.data,
       });
     } catch {
-      console.log("error en trar users");
+      console.log('error en trar users');
     }
   };
 };
@@ -81,7 +81,7 @@ export const getUsers = () => {
 export const getDogs = () => {
   return async function (dispatch) {
     try {
-      let json = await axios("/api/dogs");
+      let json = await axios('/api/dogs');
       let filterDeleted = json.data.filter((e) => e.isDelete === false);
       // console.log(filterDeleted);
       return dispatch({
@@ -89,20 +89,20 @@ export const getDogs = () => {
         payload: filterDeleted,
       });
     } catch {
-      console.log("error en traer dogs");
+      console.log('error en traer dogs');
     }
   };
 };
 export const getDogsDetails = (id) => {
   return async function (dispatch) {
     try {
-      let json = await axios("/api/dogs/" + id);
+      let json = await axios('/api/dogs/' + id);
       return dispatch({
         type: GET_DOGS_DETAILS,
         payload: json.data,
       });
     } catch {
-      console.log("error en traer dogs");
+      console.log('error en traer dogs');
     }
   };
 };
@@ -173,41 +173,41 @@ export function postContribution(data) {
 export const getPress = () => {
   return async function (dispatch) {
     try {
-      let json = await axios("/api/press");
+      let json = await axios('/api/press');
       return dispatch({
         type: GET_PRESS,
         payload: json.data,
       });
     } catch {
-      console.log("error en traer press");
+      console.log('error en traer press');
     }
   };
 };
 
-export const getProyectos= () => {
+export const getProyectos = () => {
   return async function (dispatch) {
     try {
-      let json = await axios("/api/escolar")
+      let json = await axios('/api/escolar');
       return dispatch({
         type: GET_PROYECTOS,
-        payload: json.data
-      })
+        payload: json.data,
+      });
     } catch {
-      console.log("error en traer proyectos")
+      console.log('error en traer proyectos');
     }
-  }
-}
+  };
+};
 
 export function registerFunction(payload) {
   return async function () {
-    const post = await axios.post("/api/auth/register", payload);
+    const post = await axios.post('/api/auth/register', payload);
     return post;
   };
 }
 
 export function loginFunctionA0(payload) {
   return async function () {
-    const post = await axios.post("/api/auth/login", payload);
+    const post = await axios.post('/api/auth/login', payload);
     return post;
   };
 }
@@ -215,30 +215,28 @@ export function loginFunctionA0(payload) {
 export const getUsersEmail = () => {
   return async function (dispatch) {
     try {
-      let json = await axios("/api/users");
+      let json = await axios('/api/users');
       let json2 = json.data.map((e) => e.email);
       return dispatch({
         type: GET_USERS_EMAIL,
         payload: json2,
       });
     } catch {
-      console.log("error en trar users EMAIL");
+      console.log('error en trar users EMAIL');
     }
   };
 };
 export function dataProfile(id) {
   return async function (dispatch) {
     try {
-      const userEmail = await axios.get(
-        `/api/users/${id}`
-      );
+      const userEmail = await axios.get(`/api/users/${id}`);
       return dispatch({
-        type: "GET_USERS_PROFILE",
+        type: 'GET_USERS_PROFILE',
         payload: userEmail.data.email,
       });
       // console.log(userEmail.data.email);
     } catch {
-      console.log("error al traer datos");
+      console.log('error al traer datos');
     }
   };
 }
@@ -246,24 +244,54 @@ export function dataProfile(id) {
 export const postContacto = (data) => {
   return async function (dispatch) {
     try {
-      await axios.post("/api/contacto", data);
+      await axios.post('/api/contacto', data);
       console.log(data);
       return dispatch({
         type: POST_CONTACTO,
       });
     } catch {
-      console.log("error en envio de consulta: contacto");
+      console.log('error en envio de consulta: contacto');
     }
   };
 };
 
 export const getSlider = () => {
   return async function (dispatch) {
-    const responce = await axios("/api/interfaces");
+    const responce = await axios('/api/interfaces');
     const arrayImg = responce.data[0].slider;
     return dispatch({
-      type: "GET_SLIDER",
+      type: 'GET_SLIDER',
       payload: arrayImg,
     });
   };
+};
+
+export function validateRechaptcha(token) {
+  return async function (dispatch) {
+    try {
+      console.log('llegamos a la accion captcha');
+      const response = await axios.post('/api/recaptcha', {
+        captchaToken: token,
+      });
+      const verifyResponse = response.data;
+      console.log(verifyResponse);
+      return dispatch({
+        type: VERIFY_CAPTCHA,
+        payload: verifyResponse,
+      });
+    } catch {
+      console.log('error al verificar el captcha');
+    }
+  };
 }
+export const deleteCaptchaValidate = () => {
+  return function (dispatch) {
+    try {
+      return dispatch({
+        type: DELETE_CAPTCHA_VALIDATE,
+      });
+    } catch {
+      console.log('error al borrar el captcha');
+    }
+  };
+};

@@ -1,12 +1,13 @@
 .divContendor {
   margin: 5rem;
   width: 60%;
-  height: 50vh;
+  height: 52vh;
 }
 
 .divSubContendor {
   display: flex;
   height: 100%;
+  gap: 1em;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
@@ -18,7 +19,7 @@
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  height: 13rem;
+  height: 30rem;
   width: 20rem;
   align-content: center;
   justify-content: space-between;
@@ -27,12 +28,15 @@
 .form {
   display: flex;
   flex-direction: column;
+  gap: 0.5em;
+  align-items: center;
   margin-top: 1.5rem;
 }
 
 .input {
   display: flex;
   justify-content: center;
+  width: 100%;
   padding: 0.5rem;
   font-size: medium;
   margin: 0.3rem 0;
@@ -49,6 +53,7 @@
   justify-content: center;
   padding: 0.5rem;
   font-size: medium;
+  width: 100%;
   margin: 0.3rem 0;
   border: 0;
   border-radius: 0.5rem;

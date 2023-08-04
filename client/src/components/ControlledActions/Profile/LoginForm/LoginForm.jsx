@@ -1,26 +1,29 @@
-import React, { useState } from "react";
-import { loginUser } from "../../../../login";
-import Button from "@mui/material/Button";
-import LoginGoogle from "./../../ProfileAuth0/LoginGoogle/LoginGoogle";
-import styles from "./LoginForm.module.css";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import { loginUser } from '../../../../login';
+import Button from '@mui/material/Button';
+import LoginGoogle from './../../ProfileAuth0/LoginGoogle/LoginGoogle';
+import Recaptcha from '../../Recaptcha/Recaptcha';
+import { useSelector, useDispatch } from 'react-redux';
+import styles from './LoginForm.module.css';
+import { Link } from 'react-router-dom';
+import { deleteCaptchaValidate } from '../../../../redux/actions/action';
 
 function validate(input) {
   let errors = {};
   if (
     !input.email ||
-    !input.email.trim().replace(/\s+/g, " ") ||
+    !input.email.trim().replace(/\s+/g, ' ') ||
     !/^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/.test(input.email) ||
     input.email.length < 8
   ) {
-    errors.email = "El email debe ser valido."; //.trim para quitar espacios vacios al principio y al final, .remplace para quitar espacios en blanco y expresion regular testeada con el .test para verificar que sea alfanumerico y
+    errors.email = 'El email debe ser valido.'; //.trim para quitar espacios vacios al principio y al final, .remplace para quitar espacios en blanco y expresion regular testeada con el .test para verificar que sea alfanumerico y
   } else if (
     !input.pass ||
     input.pass.length < 8 ||
     !/[A-Za-z0-9]+/g.test(input.pass)
   ) {
     errors.pass =
-      "Tu contraseña debe tener mas de 8 caracteres y ser una combinación de letras y números.";
+      'Tu contraseña debe tener mas de 8 caracteres y ser una combinación de letras y números.';
   }
 
   return errors;
@@ -29,10 +32,14 @@ function validate(input) {
 const LoginForm = () => {
   const [errors, setErrors] = useState({});
   const [input, setInput] = useState({
-    email: "",
-    pass: "",
+    email: '',
+    pass: '',
   });
+  const [validateCaptcha, setValidateCaptcha] = useState(false);
   const [contador, setContador] = useState(0);
+  const dispatch = useDispatch();
+
+  const captchaValidate = useSelector((state) => state.validateRecaptcha);
 
   function handleChange(e) {
     setInput({
@@ -49,11 +56,20 @@ const LoginForm = () => {
 
   const handleSubmitLogin = async () => {
     setInput({
-      email: "",
-      pass: "",
+      email: '',
+      pass: '',
     });
   };
 
+  useEffect(() => {
+    if (captchaValidate.success) {
+      setValidateCaptcha(true);
+    }
+  }, [captchaValidate]);
+
+  useEffect(() => {
+    dispatch(deleteCaptchaValidate);
+  });
   return (
     <div className={styles.divContendor}>
       <div className={styles.divSubContendor}>
@@ -61,34 +77,39 @@ const LoginForm = () => {
           <h2>Iniciar Sesión</h2>
           <form className={styles.form}>
             <input
-              type="email"
-              name="email"
+              type='email'
+              name='email'
               value={input.email}
-              placeholder="Email"
+              placeholder='Email'
               onChange={handleChange}
               className={styles.input}
             ></input>
             {errors.email && <p>{errors.email}</p>}
             <input
-              type="password"
-              name="pass"
+              type='password'
+              name='pass'
               value={input.pass}
-              placeholder="Contraseña"
+              placeholder='Contraseña'
               onChange={handleChange}
               className={styles.input}
             ></input>
+            <Recaptcha />
             {errors.pass && <p>{errors.pass}</p>}
           </form>
-          {errors["pass"] ||
-          errors["email"] ||
-          input.email === "" ||
-          input.pass === "" ? (
-            <Button variant="contained" disabled>
+          {errors['pass'] ||
+          errors['email'] ||
+          input.email === '' ||
+          input.pass === '' ||
+          !validateCaptcha ? (
+            <Button
+              variant='contained'
+              disabled
+            >
               Iniciar Sesión
             </Button>
           ) : (
             <Button
-              variant="contained"
+              variant='contained'
               onClick={() => {
                 setContador(contador + 1);
                 const funcion1 = loginUser(input);
@@ -105,7 +126,7 @@ const LoginForm = () => {
           ) : (
             <div>
               <h3>
-                <Link to="/recuperar">
+                <Link to='/recuperar'>
                   <span>Recuperar cuenta</span>
                 </Link>
                 {/* <button>x</button> */}
@@ -113,7 +134,6 @@ const LoginForm = () => {
             </div>
           )}
         </div>
-
         <LoginGoogle className={styles.loginGoogle} />
       </div>
     </div>
