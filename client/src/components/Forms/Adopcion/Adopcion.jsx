@@ -1,26 +1,26 @@
-import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom"; // version 5.2.0
-import { useForm } from "react-hook-form";
-import styles from "./Adopcion.module.css";
-import Footer from "../../UserInterface/Footer/Footer";
-import { postAdoption } from "../../../redux/actions/action";
-import swal from "sweetalert";
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom'; // version 5.2.0
+import { useForm } from 'react-hook-form';
+import styles from './Adopcion.module.css';
+import Footer from '../../UserInterface/Footer/Footer';
+import { postAdoption } from '../../../redux/actions/action';
+import swal from 'sweetalert';
 
 const Adopcion = (props) => {
-  const user = JSON.parse(localStorage.getItem("user")) || undefined;
+  const user = JSON.parse(localStorage.getItem('user')) || undefined;
 
   let history = useHistory();
 
-  const nameDog = props.location.pathname.split("/").pop();
+  const nameDog = props.location.pathname.split('/').pop();
 
   console.log(props);
 
   const [storage, setStorage] = React.useState({
-    name: "undefined",
-    email: "undefined",
-    phone: "undefined",
-    birthday: "undefined",
+    name: 'undefined',
+    email: 'undefined',
+    phone: 'undefined',
+    birthday: 'undefined',
   });
 
   // React.useEffect(()=>{
@@ -38,10 +38,10 @@ const Adopcion = (props) => {
 
   const handleClick = () => {
     const load = user?.data.info || {
-      name: "",
-      email: "",
-      phone: "",
-      birthday: "",
+      name: '',
+      email: '',
+      phone: '',
+      birthday: '',
     };
     setStorage(load);
   };
@@ -52,16 +52,16 @@ const Adopcion = (props) => {
     // e.preventDefault();
     dispatch(postAdoption(data));
     swal({
-      title: "Solicitud de adopcion Completada!",
-      icon: "success",
-      button: "Cerrar",
+      title: 'Solicitud de adopcion Completada!',
+      icon: 'success',
+      button: 'Cerrar',
     });
     // window.location.reload();
     // e.target.reset();
-    history.push("../");
+    history.push('../');
   };
   useEffect(() => {
-    if (storage.name === "undefined") {
+    if (storage.name === 'undefined') {
       // console.log("ejecutando infinitamente")
       handleClick();
     }
@@ -69,7 +69,7 @@ const Adopcion = (props) => {
 
   return (
     <div className={styles.divContenedor}>
-      {storage.name === "undefined" ? (
+      {storage.name === 'undefined' ? (
         //    <button className={styles.buttonLoad} onClick={() => handleClick()}>
         //    {" "}
         //    Llenar el Formulario de Adopción{" "}
@@ -78,16 +78,19 @@ const Adopcion = (props) => {
       ) : (
         <div className={styles.mainContainer}>
           <h2 className={styles.h3form}>Formulario de Adopción</h2>
-          <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className={styles.form}
+          >
             <div className={styles.item}>
               <label className={styles.label}>Nombre del Camperito</label>
               <input
                 value={!nameDog ? undefined : nameDog}
-                type="text"
+                type='text'
                 className={styles.input}
-                {...register("nameDog", { required: true })}
+                {...register('nameDog', { required: true })}
               />
-              {errors.name?.type === "required" && (
+              {errors.name?.type === 'required' && (
                 <p>Nombre del Camperito necesario</p>
               )}
             </div>
@@ -97,18 +100,18 @@ const Adopcion = (props) => {
               <input
                 value={
                   !storage.name ||
-                  storage.name === "undefined" ||
-                  storage.name === "requerir" ||
-                  storage.name === ""
+                  storage.name === 'undefined' ||
+                  storage.name === 'requerir' ||
+                  storage.name === ''
                     ? undefined
                     : storage.name
                 }
-                type="text"
+                type='text'
                 className={styles.input}
-                placeholder="Tu respuesta"
-                {...register("name", { required: true })}
+                placeholder='Tu respuesta'
+                {...register('name', { required: true })}
               />
-              {errors.name?.type === "required" && (
+              {errors.name?.type === 'required' && (
                 <p>Ingrese su nombre, por favor</p>
               )}
             </div>
@@ -118,20 +121,20 @@ const Adopcion = (props) => {
               <input
                 defaultValue={
                   !storage.birthday ||
-                  storage.birthday === "undefined" ||
-                  storage.birthday === "requerir" ||
-                  storage.birthday.includes("2022") ||
-                  storage.birthday.includes("2023") ||
-                  storage.birthday === ""
+                  storage.birthday === 'undefined' ||
+                  storage.birthday === 'requerir' ||
+                  storage.birthday.includes('2022') ||
+                  storage.birthday.includes('2023') ||
+                  storage.birthday === ''
                     ? undefined
                     : storage.birthday
                 }
-                type="date"
+                type='date'
                 className={styles.inputDate}
-                min="1923-01-01"
-                {...register("birthday", { required: true })}
+                min='1923-01-01'
+                {...register('birthday', { required: true })}
               />
-              {errors.birthday?.type === "required" && (
+              {errors.birthday?.type === 'required' && (
                 <p>Fecha de nacimiento requerida</p>
               )}
             </div>
@@ -141,24 +144,24 @@ const Adopcion = (props) => {
               <input
                 value={
                   !storage.email ||
-                  storage.email === "undefined" ||
-                  storage.email === ""
+                  storage.email === 'undefined' ||
+                  storage.email === ''
                     ? undefined
                     : storage.email
                 }
-                type="text"
+                type='text'
                 className={styles.input}
-                placeholder="Tu respuesta"
-                {...register("email", {
+                placeholder='Tu respuesta'
+                {...register('email', {
                   required: true,
                   pattern:
                     /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
                 })}
               />
-              {errors.email?.type === "pattern" && (
+              {errors.email?.type === 'pattern' && (
                 <p>Formato de Email incorrecto</p>
               )}
-              {errors.email?.type === "required" && <p>Email requerido</p>}
+              {errors.email?.type === 'required' && <p>Email requerido</p>}
             </div>
 
             <div className={styles.item}>
@@ -166,23 +169,23 @@ const Adopcion = (props) => {
               <input
                 defaultValue={
                   !storage.phone ||
-                  storage.phone === "undefined" ||
-                  storage.phone === "requerir" ||
-                  storage.phone === ""
+                  storage.phone === 'undefined' ||
+                  storage.phone === 'requerir' ||
+                  storage.phone === ''
                     ? undefined
                     : storage.phone
                 }
-                type="tel"
+                type='tel'
                 className={styles.input}
-                {...register("phone", {
+                {...register('phone', {
                   required: true,
                   pattern: /^\d{3}\d{3}\d{4}$/,
                 })}
               />
-              {errors.phone?.type === "required" && (
+              {errors.phone?.type === 'required' && (
                 <p>Número de telefono requerido</p>
               )}
-              {errors.phone?.type === "pattern" && (
+              {errors.phone?.type === 'pattern' && (
                 <p>El numero ingresado es invalido</p>
               )}
             </div>
@@ -190,12 +193,12 @@ const Adopcion = (props) => {
             <div className={styles.item}>
               <label className={styles.label}>Domicilio</label>
               <input
-                type="text"
-                placeholder="Tu respuesta"
+                type='text'
+                placeholder='Tu respuesta'
                 className={styles.input}
-                {...register("location", { required: true })}
+                {...register('location', { required: true })}
               />
-              {errors.location?.type === "required" && (
+              {errors.location?.type === 'required' && (
                 <p>Domicilio requerido</p>
               )}
             </div>
@@ -203,12 +206,12 @@ const Adopcion = (props) => {
             <div className={styles.item}>
               <label className={styles.label}>Localidad</label>
               <input
-                type="text"
-                placeholder="Tu respuesta"
+                type='text'
+                placeholder='Tu respuesta'
                 className={styles.input}
-                {...register("area", { required: true })}
+                {...register('area', { required: true })}
               />
-              {errors.area?.type === "required" && <p>Localidad requerida</p>}
+              {errors.area?.type === 'required' && <p>Localidad requerida</p>}
             </div>
 
             <div className={styles.item}>
@@ -216,12 +219,12 @@ const Adopcion = (props) => {
                 ¿Cuantas Personas viven en la casa?
               </label>
               <input
-                type="number"
+                type='number'
                 className={styles.input}
-                placeholder="Tu respuesta"
-                {...register("people", { required: true })}
+                placeholder='Tu respuesta'
+                {...register('people', { required: true })}
               />
-              {errors.people?.type === "required" && (
+              {errors.people?.type === 'required' && (
                 <p>responda la pregunta por favor</p>
               )}
             </div>
@@ -232,13 +235,13 @@ const Adopcion = (props) => {
               </label>
               <select
                 className={styles.select}
-                {...register("accordance", { required: true })}
+                {...register('accordance', { required: true })}
               >
-                <option value="si">Si</option>
-                <option value="no">No</option>
-                <option value="tal vez">Tal vez</option>
+                <option value='si'>Si</option>
+                <option value='no'>No</option>
+                <option value='tal vez'>Tal vez</option>
               </select>
-              {errors.accordance?.type === "required" && (
+              {errors.accordance?.type === 'required' && (
                 <p>Seleccione una opción</p>
               )}
             </div>
@@ -250,12 +253,12 @@ const Adopcion = (props) => {
                 Camperito es apto para tu hogar.
               </label>
               <input
-                type="text"
+                type='text'
                 className={styles.input}
-                placeholder="Tu respuesta"
-                {...register("description", { required: true })}
+                placeholder='Tu respuesta'
+                {...register('description', { required: true })}
               />
-              {errors.description?.type === "required" && (
+              {errors.description?.type === 'required' && (
                 <p>Profesión requerida</p>
               )}
             </div>
@@ -267,12 +270,12 @@ const Adopcion = (props) => {
               </label>
               <select
                 className={styles.select}
-                {...register("otherAnimals", { required: true })}
+                {...register('otherAnimals', { required: true })}
               >
-                <option value="si">Si</option>
-                <option value="no">No</option>
+                <option value='si'>Si</option>
+                <option value='no'>No</option>
               </select>
-              {errors.otherAnimals?.type === "required" && (
+              {errors.otherAnimals?.type === 'required' && (
                 <p>Seleccione una opción</p>
               )}
             </div>
@@ -282,12 +285,12 @@ const Adopcion = (props) => {
                 ¿Cuántos ? ¿Nos cuentan un poco sobre ellos?
               </label>
               <input
-                type="text"
+                type='text'
                 className={styles.input}
-                placeholder="Tu respuesta"
-                {...register("expatiate", { required: true })}
+                placeholder='Tu respuesta'
+                {...register('expatiate', { required: true })}
               />
-              {errors.expatiate?.type === "required" && (
+              {errors.expatiate?.type === 'required' && (
                 <p>información requerida</p>
               )}
             </div>
@@ -296,12 +299,12 @@ const Adopcion = (props) => {
               <label className={styles.label}>¿Estan castrados?</label>
               <select
                 className={styles.select}
-                {...register("castrated", { required: true })}
+                {...register('castrated', { required: true })}
               >
-                <option value="si">Si</option>
-                <option value="no">No</option>
+                <option value='si'>Si</option>
+                <option value='no'>No</option>
               </select>
-              {errors.castrated?.type === "required" && (
+              {errors.castrated?.type === 'required' && (
                 <p>Seleccione una opción</p>
               )}
             </div>
@@ -312,12 +315,12 @@ const Adopcion = (props) => {
                 motivo?
               </label>
               <input
-                type="text"
+                type='text'
                 className={styles.input}
-                placeholder="Tu respuesta"
-                {...register("reason", { required: true })}
+                placeholder='Tu respuesta'
+                {...register('reason', { required: true })}
               />
-              {errors.reason?.type === "required" && (
+              {errors.reason?.type === 'required' && (
                 <p>haga, al menos, un breve comentario</p>
               )}
             </div>
@@ -326,12 +329,12 @@ const Adopcion = (props) => {
               <label className={styles.label}>¿Estan vacunados?</label>
               <select
                 className={styles.select}
-                {...register("vaccinated", { required: true })}
+                {...register('vaccinated', { required: true })}
               >
-                <option value="si">Si</option>
-                <option value="no">No</option>
+                <option value='si'>Si</option>
+                <option value='no'>No</option>
               </select>
-              {errors.vaccinated?.type === "required" && (
+              {errors.vaccinated?.type === 'required' && (
                 <p>Seleccione una opción</p>
               )}
             </div>
@@ -341,12 +344,12 @@ const Adopcion = (props) => {
                 ¿Tuviste otros animales? ¿Qué pasó con ellos?
               </label>
               <input
-                type="text"
+                type='text'
                 className={styles.input}
-                placeholder="Tu respuesta"
-                {...register("events", { required: true })}
+                placeholder='Tu respuesta'
+                {...register('events', { required: true })}
               />
-              {errors.events?.type === "required" && (
+              {errors.events?.type === 'required' && (
                 <p>haga, al menos, un breve comentario</p>
               )}
             </div>
@@ -356,12 +359,12 @@ const Adopcion = (props) => {
                 ¿Han pensado que harán en vacaciones? Explique
               </label>
               <input
-                type="text"
+                type='text'
                 className={styles.input}
-                placeholder="Tu respuesta"
-                {...register("holidays", { required: true })}
+                placeholder='Tu respuesta'
+                {...register('holidays', { required: true })}
               />
-              {errors.holidays?.type === "required" && (
+              {errors.holidays?.type === 'required' && (
                 <p>haga, al menos, un breve comentario</p>
               )}
             </div>
@@ -372,12 +375,12 @@ const Adopcion = (props) => {
                 Explique
               </label>
               <input
-                type="text"
+                type='text'
                 className={styles.input}
-                placeholder="Tu respuesta"
-                {...register("babies", { required: true })}
+                placeholder='Tu respuesta'
+                {...register('babies', { required: true })}
               />
-              {errors.babies?.type === "required" && (
+              {errors.babies?.type === 'required' && (
                 <p>haga, al menos, un breve comentario</p>
               )}
             </div>
@@ -387,17 +390,17 @@ const Adopcion = (props) => {
                 Han pensado que harán si hay alguien alérgico? Explique
               </label>
               <input
-                type="text"
+                type='text'
                 className={styles.input}
-                placeholder="Tu respuesta"
-                {...register("allergies", { required: true })}
+                placeholder='Tu respuesta'
+                {...register('allergies', { required: true })}
               />
-              {errors.allergies?.type === "required" && (
+              {errors.allergies?.type === 'required' && (
                 <p>haga, al menos, un breve comentario</p>
               )}
             </div>
 
-            <div className={styles.item}>
+            <div className={styles.itemCheckbox}>
               <label className={styles.label}>
                 ¿Por que se interesan en este animal en particular?
               </label>
@@ -407,59 +410,59 @@ const Adopcion = (props) => {
               </h5>
               <div className={styles.checkboxContainer}>
                 <input
-                  type="checkbox"
-                  value="defensa"
+                  type='checkbox'
+                  value='defensa'
                   className={styles.checkbox}
-                  {...register("items", { required: true })}
+                  {...register('items', { required: true })}
                 />
                 <p>defensa</p>
               </div>
               <div className={styles.checkboxContainer}>
                 <input
-                  type="checkbox"
-                  value="compañia"
+                  type='checkbox'
+                  value='compañia'
                   className={styles.checkbox}
-                  {...register("items", { required: true })}
+                  {...register('items', { required: true })}
                 />
                 <p>compañia</p>
               </div>
               <div className={styles.checkboxContainer}>
                 <input
-                  type="checkbox"
-                  value="guardia"
+                  type='checkbox'
+                  value='guardia'
                   className={styles.checkbox}
-                  {...register("items", { required: true })}
+                  {...register('items', { required: true })}
                 />
                 <p>guardia</p>
               </div>
               <div className={styles.checkboxContainer}>
                 <input
-                  type="checkbox"
-                  value="caza"
+                  type='checkbox'
+                  value='caza'
                   className={styles.checkbox}
-                  {...register("items", { required: true })}
+                  {...register('items', { required: true })}
                 />
                 <p>caza</p>
               </div>
               <div className={styles.checkboxContainer}>
                 <input
-                  type="checkbox"
-                  value="deporte y aire libre"
+                  type='checkbox'
+                  value='deporte y aire libre'
                   className={styles.checkbox}
-                  {...register("items", { required: true })}
+                  {...register('items', { required: true })}
                 />
                 <p>deporte y aire libre</p>
               </div>
               <div className={styles.checkboxContainer}>
                 <input
-                  type="checkbox"
-                  value="otros"
+                  type='checkbox'
+                  value='otros'
                   className={styles.checkbox}
-                  {...register("items", { required: true })}
+                  {...register('items', { required: true })}
                 />
                 <p>otros</p>
               </div>
-              {errors.items?.type === "required" && (
+              {errors.items?.type === 'required' && (
                 <p>Al menos, elegir la opción "otros"</p>
               )}
             </div>
@@ -468,122 +471,122 @@ const Adopcion = (props) => {
               <label className={styles.label}>¿Donde vivirá el adoptado?</label>
               <div className={styles.checkboxContainer}>
                 <input
-                  type="checkbox"
-                  value="departamento"
+                  type='checkbox'
+                  value='departamento'
                   className={styles.checkbox}
-                  {...register("home", { required: true })}
+                  {...register('home', { required: true })}
                 />
                 <p>departamento</p>
               </div>
               <div className={styles.checkboxContainer}>
                 <input
-                  type="checkbox"
-                  value="ph"
+                  type='checkbox'
+                  value='ph'
                   className={styles.checkbox}
-                  {...register("home", { required: true })}
+                  {...register('home', { required: true })}
                 />
                 <p>ph</p>
               </div>
               <div className={styles.checkboxContainer}>
                 <input
-                  type="checkbox"
-                  value="casa"
+                  type='checkbox'
+                  value='casa'
                   className={styles.checkbox}
-                  {...register("home", { required: true })}
+                  {...register('home', { required: true })}
                 />
                 <p>casa</p>
               </div>
               <div className={styles.checkboxContainer}>
                 <input
-                  type="checkbox"
-                  value="casa en barrio cerrado"
+                  type='checkbox'
+                  value='casa en barrio cerrado'
                   className={styles.checkbox}
-                  {...register("home", { required: true })}
+                  {...register('home', { required: true })}
                 />
                 <p>casa en barrio cerrado</p>
               </div>
               <div className={styles.checkboxContainer}>
                 <input
-                  type="checkbox"
-                  value="quinta"
+                  type='checkbox'
+                  value='quinta'
                   className={styles.checkbox}
-                  {...register("home", { required: true })}
+                  {...register('home', { required: true })}
                 />
                 <p>quinta</p>
               </div>
               <div className={styles.checkboxContainer}>
                 <input
-                  type="checkbox"
-                  value="campo"
+                  type='checkbox'
+                  value='campo'
                   className={styles.checkbox}
-                  {...register("home", { required: true })}
+                  {...register('home', { required: true })}
                 />
                 <p>campo</p>
               </div>
               <div className={styles.checkboxContainer}>
                 <input
-                  type="checkbox"
-                  value="otros"
+                  type='checkbox'
+                  value='otros'
                   className={styles.checkbox}
-                  {...register("home", { required: true })}
+                  {...register('home', { required: true })}
                 />
                 <p>otros</p>
               </div>
-              {errors.home?.type === "required" && (
+              {errors.home?.type === 'required' && (
                 <p>Al menos, elegir la opción "otros"</p>
               )}
             </div>
 
-            <div className={styles.item}>
+            <div className={styles.itemCheckbox}>
               <label className={styles.label}>
                 ¿Posee espacio al aire libre
               </label>
               <div className={styles.checkboxContainer}>
                 <input
-                  type="checkbox"
-                  value="balcón"
+                  type='checkbox'
+                  value='balcón'
                   className={styles.checkbox}
-                  {...register("freshAir", { required: true })}
+                  {...register('freshAir', { required: true })}
                 />
                 <p>balcón</p>
               </div>
               <div className={styles.checkboxContainer}>
                 <input
-                  type="checkbox"
-                  value="patio"
+                  type='checkbox'
+                  value='patio'
                   className={styles.checkbox}
-                  {...register("freshAir", { required: true })}
+                  {...register('freshAir', { required: true })}
                 />
                 <p>patio</p>
               </div>
               <div className={styles.checkboxContainer}>
                 <input
-                  type="checkbox"
-                  value="terraza"
+                  type='checkbox'
+                  value='terraza'
                   className={styles.checkbox}
-                  {...register("freshAir", { required: true })}
+                  {...register('freshAir', { required: true })}
                 />
                 <p>terraza</p>
               </div>
               <div className={styles.checkboxContainer}>
                 <input
-                  type="checkbox"
-                  value="parque"
+                  type='checkbox'
+                  value='parque'
                   className={styles.checkbox}
-                  {...register("freshAir", { required: true })}
+                  {...register('freshAir', { required: true })}
                 />
                 <p>parque</p>
               </div>
               <div className={styles.checkboxContainer}>
                 <input
-                  type="checkbox"
-                  value="otros"
+                  type='checkbox'
+                  value='otros'
                   className={styles.checkbox}
-                  {...register("freshAir", { required: true })}
+                  {...register('freshAir', { required: true })}
                 />
                 <p>otros</p>
               </div>
-              {errors.freshAir?.type === "required" && (
+              {errors.freshAir?.type === 'required' && (
                 <p>Al menos, elegir la opción "otros"</p>
               )}
             </div>
@@ -594,12 +597,12 @@ const Adopcion = (props) => {
               </label>
               <select
                 className={styles.select}
-                {...register("status", { required: true })}
+                {...register('status', { required: true })}
               >
-                <option value="propietario">propietario</option>
-                <option value="alquilo">alquilo</option>
+                <option value='propietario'>propietario</option>
+                <option value='alquilo'>alquilo</option>
               </select>
-              {errors.status?.type === "required" && (
+              {errors.status?.type === 'required' && (
                 <p>Seleccione una opción</p>
               )}
             </div>
@@ -611,13 +614,13 @@ const Adopcion = (props) => {
               </label>
               <select
                 className={styles.select}
-                {...register("authorization", { required: true })}
+                {...register('authorization', { required: true })}
               >
-                <option value="si">Si</option>
-                <option value="no">No</option>
-                <option value="tal vez">Tal vez</option>
+                <option value='si'>Si</option>
+                <option value='no'>No</option>
+                <option value='tal vez'>Tal vez</option>
               </select>
-              {errors.authorization?.type === "required" && (
+              {errors.authorization?.type === 'required' && (
                 <p>Seleccione una opción</p>
               )}
             </div>
@@ -627,12 +630,12 @@ const Adopcion = (props) => {
                 ¿Dónde dormirá el adoptado?
               </label>
               <input
-                type="text"
+                type='text'
                 className={styles.input}
-                placeholder="Tu respuesta"
-                {...register("sleep", { required: true })}
+                placeholder='Tu respuesta'
+                {...register('sleep', { required: true })}
               />
-              {errors.sleep?.type === "required" && (
+              {errors.sleep?.type === 'required' && (
                 <p>conteste la pregunta, por favor</p>
               )}
             </div>
@@ -642,12 +645,12 @@ const Adopcion = (props) => {
                 ¿Estará solo? ¿Cuánto tiempo?
               </label>
               <input
-                type="text"
+                type='text'
                 className={styles.input}
-                placeholder="Tu respuesta"
-                {...register("loneliness", { required: true })}
+                placeholder='Tu respuesta'
+                {...register('loneliness', { required: true })}
               />
-              {errors.loneliness?.type === "required" && (
+              {errors.loneliness?.type === 'required' && (
                 <p>conteste la pregunta, por favor</p>
               )}
             </div>
@@ -657,12 +660,12 @@ const Adopcion = (props) => {
                 ¿Quién lo paseará? ¿Cuántas veces al día?
               </label>
               <input
-                type="text"
+                type='text'
                 className={styles.input}
-                placeholder="Tu respuesta"
-                {...register("walk", { required: true })}
+                placeholder='Tu respuesta'
+                {...register('walk', { required: true })}
               />
-              {errors.walk?.type === "required" && (
+              {errors.walk?.type === 'required' && (
                 <p>conteste la pregunta, por favor</p>
               )}
             </div>
@@ -672,12 +675,12 @@ const Adopcion = (props) => {
                 En caso de mudarse, ¿ha pensado que hará con el perro?
               </label>
               <input
-                type="text"
+                type='text'
                 className={styles.input}
-                placeholder="Tu respuesta"
-                {...register("moving", { required: true })}
+                placeholder='Tu respuesta'
+                {...register('moving', { required: true })}
               />
-              {errors.moving?.type === "required" && (
+              {errors.moving?.type === 'required' && (
                 <p>conteste la pregunta, por favor</p>
               )}
             </div>
@@ -688,13 +691,13 @@ const Adopcion = (props) => {
               </label>
               <select
                 className={styles.select}
-                {...register("adaptation", { required: true })}
+                {...register('adaptation', { required: true })}
               >
-                <option value="si">Si</option>
-                <option value="no">No</option>
-                <option value="tal vez">Tal vez</option>
+                <option value='si'>Si</option>
+                <option value='no'>No</option>
+                <option value='tal vez'>Tal vez</option>
               </select>
-              {errors.adaptation?.type === "required" && (
+              {errors.adaptation?.type === 'required' && (
                 <p>Seleccione una opción</p>
               )}
             </div>
@@ -704,17 +707,21 @@ const Adopcion = (props) => {
                 ¿Qué piensa de la esterilización de animales de compañía?
               </label>
               <input
-                type="text"
+                type='text'
                 className={styles.input}
-                placeholder="Tu respuesta"
-                {...register("sterilization", { required: true })}
+                placeholder='Tu respuesta'
+                {...register('sterilization', { required: true })}
               />
-              {errors.sterilization?.type === "required" && (
+              {errors.sterilization?.type === 'required' && (
                 <p>conteste la pregunta, por favor</p>
               )}
             </div>
 
-            <input type="submit" value="Enviar" className={styles.submit} />
+            <input
+              type='submit'
+              value='Enviar'
+              className={styles.submit}
+            />
           </form>
         </div>
       )}
