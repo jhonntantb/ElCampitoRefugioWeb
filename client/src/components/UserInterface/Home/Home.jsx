@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 
-// import homeimg from "../../../assets/img/homeimg.jpg";
+import homeimg from "../../../assets/img/homeimg.jpg";
 
 import { getUsersEmail } from "../../../redux/actions/action";
 
@@ -100,13 +100,14 @@ const Home = () => {
               <h2 className={styles.h2Home}>VALE LA PENA INVOLUCRARSE</h2>
             </div>
             
-            {/* 
+            
             <img
               src={homeimg}
               className={styles.imgHome}
               alt="Perro con humano"
-            /> 
-            */}
+            />             
+
+            {/* 
             <main>
               <Slideshow
                 controles={true}
@@ -184,6 +185,7 @@ const Home = () => {
                 )}
               </Slideshow>
             </main> 
+            */}
             {/* aca termino el slider */}
           </article>
         </section>
