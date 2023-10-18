@@ -2,7 +2,7 @@ import { fetchUtils } from "react-admin";
 import { stringify } from "query-string";
 import pushCloudinary from "./pushCloudinary";
 
-const apiUrl = "http://localhost:3001";
+const apiUrl = "https://subdominio.api.elcampitorefugio.org";
 const httpClient = fetchUtils.fetchJson;
 let folder = '';
 

@@ -1,15 +1,12 @@
 {
-  "proxy": "https://subdominio.api.elcampitorefugio.org",
-  "name": "api_rest",
+  "name": "api2",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon app.js",
-    "buid": "node app.js"
+    "buid": "node index.js"
   },
-  "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {

@@ -3,7 +3,7 @@ import styles from "./NoAccess.module.css";
 
 const NoAccess = () => {
   function goHome() {
-    window.location = process.env.REACT_APP_FRONT || "http://localhost:3000/";
+    window.location = process.env.REACT_APP_FRONT || "https://subdominio.elcampitorefugio.org/";
   }
   setTimeout(goHome, process.env.REACT_APP_PORT || 3000);
 

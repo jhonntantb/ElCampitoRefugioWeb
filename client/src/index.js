@@ -13,7 +13,7 @@ dotenv.config();
 
 //para que funcione  hacer npm intall dotenv
 
-axios.defaults.baseURL = process.env.REACT_APP_API || "http://localhost:3001";
+axios.defaults.baseURL = process.env.REACT_APP_API || "https://subdominio.api.elcampitorefugio.org";
 
 const domainAuth = process.env.REACT_APP_AUTH_DOMAIN;
 const clientAuth = process.env.REACT_APP_AUTH_CLIENT;

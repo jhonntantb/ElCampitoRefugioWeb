@@ -8,7 +8,7 @@ import homeimg from '../../../assets/img/homeimg.jpg';
 import { getUsersEmail } from '../../../redux/actions/action';
 
 import BarraDeNavegacion from '../BarraDeNavegacion/BarraDeNavegacion';
-import { Slide, Slideshow } from '../Slider/Slider';
+//import { Slide, Slideshow } from '../Slider/Slider';
 import { getSlider } from '../../../redux/actions/action';
 import Footer from '../Footer/Footer';
 import ModalLogin from '../../Modals/ModalLogin/ModalLogin';
@@ -18,14 +18,15 @@ import styles from './Home.module.css';
 
 const Home = () => {
   const { user } = useAuth0();
-  const imagenes = useSelector((state) => state.slider);
+  //const imagenes = useSelector((state) => state.slider);
   const dispatch = useDispatch();
   const [userGoogle, setUserGoogle] = useState();
   const usersEmail = useSelector((state) => state.userEmail);
-  const [data, setData] = useState(null);
+  //const [data, setData] = useState(null);
+  const [setData] = useState(null);
   const localStore = JSON.parse(localStorage.getItem('user'));
   // let paraNada = data;
-  console.log(data);
+  //console.log(data);
   const dataSet = (googleUser) => {
     if (googleUser) {
       let info = usersEmail.includes(googleUser);
@@ -43,7 +44,7 @@ const Home = () => {
     dispatch(getSlider());
   }, [dispatch]); // , userGoogle, usersEmail, user
 
-  let aux = null;
+  //let aux = null;
   const aca = () => {
     if (user) {
       return usersEmail.includes(user.email);
@@ -51,8 +52,8 @@ const Home = () => {
   };
 
   let fun = aca();
-  console.log(fun, 'estado');
-  console.log(aux, 'estadodata');
+  //console.log(fun, 'estado');
+  //console.log(aux, 'estadodata');
 
   //   console.log(userGoogle)
   //   if (userGoogle) {
@@ -70,7 +71,7 @@ const Home = () => {
   //     let data =  serUserGoogle(userType)
 
   // })
-  console.log(localStore);
+  //console.log(localStore);
 
   return (
     <div className={styles.container}>
